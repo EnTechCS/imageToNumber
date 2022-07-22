@@ -8,15 +8,10 @@
 
 import cv2
 import pytesseract
-import os.path
-import sys
 import time
 
-application_path = os.path.dirname(sys.executable)
-print(application_path)
-
-pathImage  = r"C:\Users\Abdullah\Desktop\Programming\autohotkey\autohotkeyPlayGround\imageToNumber\imageTest.jpg"
-pathImageSave = r"C:\Users\Abdullah\Desktop\Programming\autohotkey\autohotkeyPlayGround\imageToNumber\date.txt"
+pathImage = "imageTest.jpg"
+pathImageSave = "date.txt"
 img_lst = [pathImage]
 
 for i, img_nm in enumerate(img_lst):
@@ -29,9 +24,11 @@ for i, img_nm in enumerate(img_lst):
         gry = cv2.resize(gry, (w * 2, h * 2))
         erd = cv2.erode(gry, None, iterations=1)
         if i == len(img_lst)-1:
-            thr = cv2.threshold(erd, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
+            thr = cv2.threshold(
+                erd, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
         else:
-            thr = cv2.threshold(erd, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+            thr = cv2.threshold(
+                erd, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
     bnt = cv2.bitwise_not(thr)
     txt = pytesseract.image_to_string(bnt, config="--psm 6 digits")
     file = open(pathImageSave, 'w')
