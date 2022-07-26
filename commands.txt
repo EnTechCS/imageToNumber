@@ -1,0 +1,3 @@
+python -m PyInstaller --onefile --uac-admin --clean --noconsole --collect-data pyshadow imageToNumber.py
+python -m PyInstaller --onefile --clean --noconsole --collect-data pyshadow imageToNumber.py
+python -m PyInstaller --onefile --uac-admin --clean --collect-data pyshadow imageToNumber.py

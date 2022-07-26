@@ -6,12 +6,24 @@
 
 # Bitwise-not is an arithmetic operation highly useful for extracting part of the image.
 
+from os import path
+
 import cv2
 import pytesseract
 import time
 
-pathImage = "imageTest.jpg"
-pathImageSave = "date.txt"
+pathNeeded = path.expanduser("~")
+pathImageFolder = r'\Desktop\Programming\autohotkey\autohotkeyPlayGround\imageToNumber\imageTest.jpg'
+pathImageSaveFolder = r'\Desktop\Programming\autohotkey\autohotkeyPlayGround\imageToNumber\date.txt'
+# print("pathNeeded", pathNeeded)
+
+pathImage = path.abspath(path.join(path.dirname(
+    __file__), r"%s%s" % (pathNeeded, pathImageFolder)))
+pathImageSave = path.abspath(path.join(path.dirname(
+    __file__), r"%s%s" % (pathNeeded, pathImageSaveFolder)))
+# print("pathImage:", pathImage)
+# print("pathImageSave:", pathImageSave)
+
 img_lst = [pathImage]
 
 for i, img_nm in enumerate(img_lst):
@@ -34,10 +46,10 @@ for i, img_nm in enumerate(img_lst):
     file = open(pathImageSave, 'w')
     file.write(txt)
     file.close()
-    print("".join([t for t in txt if t.isalnum()]))
-    print("Ending process in 10s")
-    time.sleep(10)
-    print("Ending process")
-    time.sleep(3)
+    # print("".join([t for t in txt if t.isalnum()]))
+    # print("Ending process in 10s")
+    # time.sleep(10)
+    # print("Ending process")
+    # time.sleep(3)
     # cv2.imshow("bnt", bnt)
     # cv2.waitKey(0)
